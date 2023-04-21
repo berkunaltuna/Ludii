@@ -239,6 +239,11 @@ public class MainMenuFunctions extends JMenuBar
 			// Create and lauch an instance of the visual editor
 			setStartVisualEditor(new StartVisualEditor(app));
 		}
+		else if (source.getText().equals("Berk Editor"))
+		{
+			// Create and lauch an instance of the visual editor
+			setStartVisualEditor(new StartVisualEditor(app));
+		}
 		// IMPORTANT These next four menu functions are just for us, not the user
 		else if (source.getText().equals("Export Thumbnails"))
 		{
