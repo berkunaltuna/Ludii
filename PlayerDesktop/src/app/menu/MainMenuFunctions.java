@@ -47,6 +47,7 @@ import app.display.dialogs.TestLudemeDialog;
 import app.display.dialogs.MoveDialog.PossibleMovesDialog;
 import app.display.dialogs.editor.EditorDialog;
 import app.display.dialogs.visual_editor.StartVisualEditor;
+import app.display.dialogs.QnA_Editor.StartQnAEditor; // QnAEditor import
 import app.display.screenCapture.ScreenCapture;
 import app.display.util.Thumbnails;
 import app.display.views.tabs.TabView;
@@ -127,6 +128,9 @@ public class MainMenuFunctions extends JMenuBar
 
 	/** The visual editor. */
 	private static StartVisualEditor startVisualEditor;
+
+	/** The QnA Editor */
+	private static StartQnAEditor startQnAEditor;
 
 	//-------------------------------------------------------------------------
 	
@@ -239,10 +243,12 @@ public class MainMenuFunctions extends JMenuBar
 			// Create and lauch an instance of the visual editor
 			setStartVisualEditor(new StartVisualEditor(app));
 		}
-		else if (source.getText().equals("Berk Editor"))
+		else if (source.getText().equals("QnA Editor"))
 		{
-			// Create and lauch an instance of the visual editor
-			setStartVisualEditor(new StartVisualEditor(app));
+			// Create and lauch an instance of the QnA Editor
+			//setStartVisualEditor(new StartVisualEditor(app));
+			System.out.println("QnA Editor");
+			setStartQnAEditor(new StartQnAEditor(app));
 		}
 		// IMPORTANT These next four menu functions are just for us, not the user
 		else if (source.getText().equals("Export Thumbnails"))
@@ -1344,7 +1350,7 @@ public class MainMenuFunctions extends JMenuBar
 			final Map<String, Double> metricPredictions = MetricPredictionExternal.predictMetrics(game, modelFilePath, useCompilationOnly);
 			displayPredictionResults(app, metricPredictions, false, false);
 		}
-		else if (getParentTitle(source, 3).equals("Predict Best Agent (external)"))
+	    else if (getParentTitle(source, 3).equals("Predict Best Agent (external)"))
 		{
 			// Agent prediction
 			final boolean useHeuristics = false;
@@ -1359,6 +1365,7 @@ public class MainMenuFunctions extends JMenuBar
 			displayPredictionResults(app, agentPredictions, useClassifier, true);
 
 		}
+			
 		else if (getParentTitle(source, 3).equals("Predict Best Heuristic (external)"))
 		{
 			// Heuristic prediction
@@ -1727,6 +1734,16 @@ public class MainMenuFunctions extends JMenuBar
 	public static void setStartVisualEditor(final StartVisualEditor startVisualEditor)
 	{
 		MainMenuFunctions.startVisualEditor = startVisualEditor;
+	}
+
+	public static StartQnAEditor getStartQnAEditor()
+	{
+		return startQnAEditor;
+	}
+
+	public static void setStartQnAEditor(final StartQnAEditor startQnAEditor)
+	{
+		MainMenuFunctions.startQnAEditor = startQnAEditor;
 	}
 	
 	//---------------------------------------------------------------------

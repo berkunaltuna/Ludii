@@ -182,7 +182,7 @@ public class MainMenu extends JMenuBar
 			menuItem.addActionListener(al);
 			menu.add(menuItem);
 
-			menuItem = new JMenuItem("Berk Editor");
+			menuItem = new JMenuItem("QnA Editor");
 			menuItem.addActionListener(al);
 			menu.add(menuItem);
 		}
