@@ -1,5 +1,7 @@
 package app.display.dialogs.QnA_Editor;
 
+//package app.display.dialogs.QnA_Editor;
+
 /* 
 import app.display.dialogs.visual_editor.handler.Handler;
 import app.display.dialogs.visual_editor.view.panels.editor.EditorSidebar;
@@ -13,18 +15,24 @@ import java.awt.*;
 
 public class QnAEditorPanel extends JPanel
 {
-
+    private final QnAs qna = new QnAs();
     /**
 	 * 
 	 */
-
+    
 
 
     public QnAEditorPanel()
     {
         setLayout(new BorderLayout());
-        add(new JButton("QnAEditor"), BorderLayout.CENTER);
-
+        //add(new JButton("QnAEditor"), BorderLayout.CENTER);
+        
+        add(qna, BorderLayout.CENTER);
         setFocusable(true);
+    }
+
+    public void QnABox()
+    {
+
     }
 }
