@@ -31,6 +31,9 @@ public class QnAs extends JPanel implements ActionListener {
     private String currentQuestion;
     private JTextField gameName;
     private String desc = "(";
+    private String players = "";
+    private String equipment = " (equipment { ";
+    private String rules = " (rules ";
     private String piece = "";
     private boolean byAdding = false;
     private boolean playClauseAdded = false;
@@ -150,35 +153,35 @@ public class QnAs extends JPanel implements ActionListener {
                 add(answerDropdown1, BorderLayout.SOUTH);
                 repaint();
                 revalidate();
-                desc += " (players 2)";
+                players += " (players 2)";
                 System.out.println(desc);
             } else {
                 //error
             } 
         } else if (currentQuestion.equals("What type and size do you want your board to be?")) { // Question 3.
             if (dropdownAnswer1.equals("Square 3")) {
-                desc += " (equipment  { (board (square 3))";
+                equipment += " (board (square 3))";
                 System.out.println(desc);    
             } else if (dropdownAnswer1.equals("Square 4")) {
-                desc += " (equipment  { (board (square 4))";
+                equipment += " (board (square 4))";
                 System.out.println(desc);
             } else if (dropdownAnswer1.equals("Square 5")) {
-                desc += " (equipment  { (board (square 5))";
+                equipment += " (board (square 5))";
                 System.out.println(desc);
             } else if (dropdownAnswer1.equals("Square 6")) {
-                desc += " (equipment  { (board (square 6))";
+                equipment += " (board (square 6))";
                 System.out.println(desc);
             } else if (dropdownAnswer1.equals("Square 9")) {
-                desc += " (equipment  { (board (square 9))";
+                equipment += " (board (square 9))";
                 System.out.println(desc);
             } else if (dropdownAnswer1.equals("(Concentric 1 8)")) {
-                desc += " (equipment  {  (board (concentric {1 8}) use:Vertex)";
+                equipment += " (board (concentric {1 8}) use:Vertex)";
                 System.out.println(desc);
             } else if (dropdownAnswer1.equals("(hex 5)")) {
-                desc += " (equipment  { (board (hex 5))";
+                equipment += " (board (hex 5))";
                 System.out.println(desc);
             } else if (dropdownAnswer1.equals("(hex Triangle 11)")) {
-                desc += " (equipment  {  (board (hex Triangle 11))";
+                equipment += " (board (hex Triangle 11))";
                 System.out.println(desc);
             }
                 currentQuestion = "What is the piece used?";
@@ -205,7 +208,7 @@ public class QnAs extends JPanel implements ActionListener {
                 System.out.println(byAdding);
             } else if (dropdownAnswer3.equals("By adding")) {
                 byAdding = true;
-                desc += " (piece \"Marker\" Each) })";
+                equipment += " (piece \"Marker\" Each) ";
                 System.out.println(byAdding);
                 System.out.println(desc);
             }
@@ -218,14 +221,14 @@ public class QnAs extends JPanel implements ActionListener {
             if (dropdownAnswer4.equals("Step to empty place")) {
                 if (piece.equals("Marker")) {
                     if (byAdding == false) {
-                        desc += " (piece \"Marker\" Each \"StepToEmpty\") } )";
+                        equipment += " (piece \"Marker\" Each \"StepToEmpty\") ";
                         System.out.println(desc);
                     }
                 }
                 System.out.println(piece);
             } else if (dropdownAnswer4.equals("Like chess queen")) {
                 if (piece.equals("Queen")) {
-                    desc += " (piece \"Queen\" Each (move Slide)) } )";
+                    equipment += " (piece \"Queen\" Each (move Slide)) ";
                     System.out.println(desc);
                 }
             }
@@ -242,11 +245,12 @@ public class QnAs extends JPanel implements ActionListener {
                 repaint();
                 revalidate();
             } else if (dropdownAnswer5.equals("No")) { // step 10
+                equipment += " } ) ";
                 if (byAdding == true) {
-                    desc += " (rules (play (move Add (to (sites Empty))))";
+                    rules += " (play (move Add (to (sites Empty))))";
                 }
                 else {
-                    desc += " (rules (play (forEach Piece))";
+                    rules += " (play (forEach Piece))";
                     playClauseAdded = true;
                 }
                 currentQuestion = "What is the end condition and winning/losing side?";
@@ -257,14 +261,14 @@ public class QnAs extends JPanel implements ActionListener {
             }        
         } else if (currentQuestion.equals("Where do you want to place the pieces of the first player?")) { // Question 8. 
             if (dropdownAnswer6.equals("(place \"Queen1\"   {\"A1\" \"C1\" \"E1\" \"A3\" \"B5\" \"D5\"})")) {
-                desc += " (rules (start { (place \"Queen1\"   {\"A1\" \"C1\" \"E1\" \"A3\" \"B5\" \"D5\"})";
+                rules += " (start { (place \"Queen1\"   {\"A1\" \"C1\" \"E1\" \"A3\" \"B5\" \"D5\"})";
                 System.out.println(desc);
             } else if (dropdownAnswer6.equals("(place \"Marker1\" (sites Bottom))")) {
-                desc += " (rules (start { (place \"Marker1\" (sites Bottom))";
-                System.out.println(desc);
+                rules += " (start { (place \"Marker1\" (sites Bottom))";
+                equipment += " (regions \"Home\" P1  (sites Bottom))";
+                System.out.println(equipment);
             } else if (dropdownAnswer6.equals("(place \"Marker1\" { 1 8 7})")) {
-                desc += " (rules (start { (place \"Marker1\" { 1 8 7})";
-                System.out.println(desc);
+                rules += " (start { (place \"Marker1\" { 1 8 7})";
             }
             currentQuestion = "Where do you want to place the pieces of the second player?"; // Question 9.
             remove(answerDropdown6);
@@ -273,17 +277,18 @@ public class QnAs extends JPanel implements ActionListener {
             revalidate();
         } else if (currentQuestion.equals("Where do you want to place the pieces of the second player?")) { // Question 9. 
             if (dropdownAnswer7.equals("(place \"Queen2\"  {\"A5\" \"B1\" \"C5\" \"D1\" \"E3\" \"E5\"})")) {
-                desc += " (place \"Queen2\"  {\"A5\" \"B1\" \"C5\" \"D1\" \"E3\" \"E5\"}) })"; // This instance is different from the above. (rules (start is missing here.
+                rules += " (place \"Queen2\"  {\"A5\" \"B1\" \"C5\" \"D1\" \"E3\" \"E5\"}) })"; // This instance is different from the above. (rules (start is missing here.
                 System.out.println(desc);
             } else if (dropdownAnswer7.equals("(place \"Marker2\" (sites Top))")) {
-                desc += " (place \"Marker2\" (sites Top)) })"; // This instance is different from the above. (rules (start is missing here.
-                System.out.println(desc);
+                rules += " (place \"Marker2\" (sites Top)) })"; // This instance is different from the above. (rules (start is missing here.
+                equipment += " (regions \"Home\" P2  (sites Top)) ";
+                System.out.println(equipment);
             } else if (dropdownAnswer7.equals("(place \"Marker2\" { 3 4 5 })")) {
-                desc += " (place \"Marker2\" { 3 4 5 }) })"; // This instance is different from the above. (rules (start is missing here.
-                System.out.println(desc);
+                rules += " (place \"Marker2\" { 3 4 5 }) })"; // This instance is different from the above. (rules (start is missing here.
             }
+            equipment += " } )";
             if (playClauseAdded == false) {
-                desc += " (play (forEach Piece))";
+                rules += " (play (forEach Piece))";
             }
             currentQuestion = "What is the end condition and winning/losing side?"; // Question 11.
             remove(answerDropdown7);
@@ -292,25 +297,25 @@ public class QnAs extends JPanel implements ActionListener {
             revalidate();
         } else if (currentQuestion.equals("What is the end condition and winning/losing side?")) { // Question 11. 
             if (dropdownAnswer8.equals("Win by filling opponent's initial sites")) {
-                desc += " (end (\"FillWin\" (sites Next)))))";  
+                rules += " (end (\"FillWin\" (sites Next)))))";  
                 System.out.println(desc);
             } else if (dropdownAnswer8.equals("Win when pieces are 3 in line.")) {
-                desc += " (end (if (is Line 3) (result Mover Win)))))";  
+                rules += " (end (if (is Line 3) (result Mover Win)))))";  
                 System.out.println(desc);
             } else if (dropdownAnswer8.equals("Win when pieces are 4 in line.")) {
-                desc += " (end (if (is Line 4) (result Mover Win)))))";  
+                rules += " (end (if (is Line 4) (result Mover Win)))))";  
                 System.out.println(desc);
             } else if (dropdownAnswer8.equals("Win when pieces are 6 in line.")) {
-                desc += " (end (if (is Line 6) (result Mover Win)))))";  
+                rules += " (end (if (is Line 6) (result Mover Win)))))";  
                 System.out.println(desc);
             } else if (dropdownAnswer8.equals("Win when pieces are 3 in line and 1 piece is at the center.")) {
-                desc += " (end (if (and (= (what at:(centrePoint)) (mover)) (is Line 3)) (result Mover Win)))))";  
+                rules += " (end (if (and (= (what at:(centrePoint)) (mover)) (is Line 3)) (result Mover Win)))))";  
                 System.out.println(desc);
             } else if (dropdownAnswer8.equals("Win when 4 in line, but lose when 3 in line")) {
-                desc += " (end { (if (is Line 4) (result Mover Win))  (if (is Line 3) (result Mover Loss)) } )))";  
+                rules += " (end { (if (is Line 4) (result Mover Win))  (if (is Line 3) (result Mover Loss)) } )))";  
                 System.out.println(desc);
             } else if (dropdownAnswer8.equals("Win when 3 sides are connected.")) {
-                desc += " (end (if (is Connected 3 Sides) (result Mover Win)))))";  
+                rules += " (end (if (is Connected 3 Sides) (result Mover Win)))))";  
                 System.out.println(desc);
             }
             currentQuestion = ""; // Question 11.
@@ -322,6 +327,8 @@ public class QnAs extends JPanel implements ActionListener {
             repaint();
             revalidate();
         } else {
+            desc += players + equipment + rules;
+            System.out.println(desc);
             System.out.println(answer);
             if (answer.equals("Compile")) {
                 System.out.println("Compiling");
