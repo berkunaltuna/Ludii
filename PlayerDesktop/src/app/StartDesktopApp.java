@@ -12,7 +12,6 @@ public class StartDesktopApp
 	public static void main(final String[] args)
 	{
 		// The actual launching
-		System.out.println("hello");
 		if (args.length == 0)
 		{
 			desktopApp = new DesktopApp();

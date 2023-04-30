@@ -21,7 +21,7 @@ public class StartQnAEditor
 
 	public static void main(String[] args)
 	{
-		System.out.println("giriyorum");
+		//System.out.println("giriyorum");
 		new StartQnAEditor(null); // Executed when called.
 	}
 
@@ -31,7 +31,7 @@ public class StartQnAEditor
 		StartQnAEditor.app = app; // context.
 		try
 		{
-			System.out.println("AleykumSelam");
+			//System.out.println("AleykumSelam");
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		}
 		catch(Exception ignored)
@@ -44,7 +44,7 @@ public class StartQnAEditor
 		QnAEditorFrame f = new QnAEditorFrame(); // Set the frame which will create a window.
 		f.requestFocus();
 
-		System.out.println("SelamunAleykum");
+		//System.out.println("SelamunAleykum");
 	}
 
 	//private static NGramController controller;

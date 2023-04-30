@@ -247,7 +247,7 @@ public class MainMenuFunctions extends JMenuBar
 		{
 			// Create and lauch an instance of the QnA Editor
 			//setStartVisualEditor(new StartVisualEditor(app));
-			System.out.println("QnA Editor");
+			//System.out.println("QnA Editor");
 			setStartQnAEditor(new StartQnAEditor(app));
 		}
 		// IMPORTANT These next four menu functions are just for us, not the user

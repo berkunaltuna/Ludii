@@ -26,7 +26,7 @@ public class QnAEditorFrame extends JFrame
     {
         // set frame properties
         setTitle(TITLE);
-        setSize(800, 1200);
+        setSize(600, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
