@@ -90,10 +90,10 @@ public class QnAs extends JPanel implements ActionListener {
         answerDropdown5 = new JComboBox<String>(new String[] {"Select...", "Yes", "No"}); // Q7
         answerDropdown5.addActionListener(this);
 
-        answerDropdown6 = new JComboBox<String>(new String[] {"Select...", "(place \"Queen1\"   {\"A1\" \"C1\" \"E1\" \"A3\" \"B5\" \"D5\"})", "(place \"Marker1\" (sites Bottom))", "(place \"Marker1\" { 1 8 7})" }); // Q8
+        answerDropdown6 = new JComboBox<String>(new String[] {"Select...", "(place \"Queen1\"   {\"A1\" \"C1\" \"E1\" \"A3\" \"B5\" \"D5\"})", "(place \"Marker1\" (sites Bottom))", "(place \"Marker1\" { 1 8 7})", "(place \"Marker1\"  {\"A1\" \"B4\" \"C1\" \"D4\"})" }); // Q8
         answerDropdown6.addActionListener(this);
         
-        answerDropdown7 = new JComboBox<String>(new String[] {"Select...", "(place \"Queen2\"  {\"A5\" \"B1\" \"C5\" \"D1\" \"E3\" \"E5\"})", "(place \"Marker2\" (sites Top))","(place \"Marker2\" { 3 4 5 })"}); // Q9
+        answerDropdown7 = new JComboBox<String>(new String[] {"Select...", "(place \"Queen2\"  {\"A5\" \"B1\" \"C5\" \"D1\" \"E3\" \"E5\"})", "(place \"Marker2\" (sites Top))","(place \"Marker2\" { 3 4 5 })", "(place \"Marker2\"  {\"A4\" \"B1\" \"C4\" \"D1\"})"}); // Q9
         answerDropdown7.addActionListener(this);
 
         answerDropdown8 = new JComboBox<String>(new String[] {"Select...", "Win by filling opponent's initial sites", "Win when pieces are 3 in line.", "Win when pieces are 4 in line.", "Win when pieces are 6 in line.", "Win when pieces are 3 in line and 1 piece is at the center.", "Win when 4 in line, but lose when 3 in line", "Win when 3 sides are connected."}); // Q9
@@ -155,9 +155,7 @@ public class QnAs extends JPanel implements ActionListener {
                 revalidate();
                 players += " (players 2)";
                 System.out.println(desc);
-            } else {
-                //error
-            } 
+            }
         } else if (currentQuestion.equals("What type and size do you want your board to be?")) { // Question 3.
             if (dropdownAnswer1.equals("Square 3")) {
                 equipment += " (board (square 3))";
@@ -269,7 +267,10 @@ public class QnAs extends JPanel implements ActionListener {
                 System.out.println(equipment);
             } else if (dropdownAnswer6.equals("(place \"Marker1\" { 1 8 7})")) {
                 rules += " (start { (place \"Marker1\" { 1 8 7})";
+            } else if (dropdownAnswer6.equals("(place \"Marker1\"  {\"A1\" \"B4\" \"C1\" \"D4\"})")) {
+                rules += " (start { (place \"Marker1\"  {\"A1\" \"B4\" \"C1\" \"D4\"})";
             }
+
             currentQuestion = "Where do you want to place the pieces of the second player?"; // Question 9.
             remove(answerDropdown6);
             add(answerDropdown7, BorderLayout.SOUTH);
@@ -285,7 +286,10 @@ public class QnAs extends JPanel implements ActionListener {
                 System.out.println(equipment);
             } else if (dropdownAnswer7.equals("(place \"Marker2\" { 3 4 5 })")) {
                 rules += " (place \"Marker2\" { 3 4 5 }) })"; // This instance is different from the above. (rules (start is missing here.
+            } else if (dropdownAnswer7.equals("(place \"Marker2\"  {\"A4\" \"B1\" \"C4\" \"D1\"})")) {
+                rules += " (place \"Marker2\"  {\"A4\" \"B1\" \"C4\" \"D1\"}) })"; // This instance is different from the above. (rules (start is missing here.
             }
+
             equipment += " } )";
             if (playClauseAdded == false) {
                 rules += " (play (forEach Piece))";
