@@ -90,10 +90,10 @@ public class QnAs extends JPanel implements ActionListener {
         answerDropdown5 = new JComboBox<String>(new String[] {"Select...", "Yes", "No"}); // Q7
         answerDropdown5.addActionListener(this);
 
-        answerDropdown6 = new JComboBox<String>(new String[] {"Select...", "(place \"Queen1\"   {\"A1\" \"C1\" \"E1\" \"A3\" \"B5\" \"D5\"})", "(place \"Marker1\" (sites Bottom))", "(place \"Marker1\" { 1 8 7})", "(place \"Marker1\"  {\"A1\" \"B4\" \"C1\" \"D4\"})" }); // Q8
+        answerDropdown6 = new JComboBox<String>(new String[] {"Select...", "Place Queen1 to coordinates: \"A1\" \"C1\" \"E1\" \"A3\" \"B5\" \"D5\"", "Place Marker1 to bottom of the board", "Place Marker1 to cells 1, 8, 7", "Place Marker1 to coordinates: \"A1\" \"B4\" \"C1\" \"D4\"" }); // Q8
         answerDropdown6.addActionListener(this);
         
-        answerDropdown7 = new JComboBox<String>(new String[] {"Select...", "(place \"Queen2\"  {\"A5\" \"B1\" \"C5\" \"D1\" \"E3\" \"E5\"})", "(place \"Marker2\" (sites Top))","(place \"Marker2\" { 3 4 5 })", "(place \"Marker2\"  {\"A4\" \"B1\" \"C4\" \"D1\"})"}); // Q9
+        answerDropdown7 = new JComboBox<String>(new String[] {"Select...", "Place Queen2 to coordinates: \"A5\" \"B1\" \"C5\" \"D1\" \"E3\" \"E5\"", "Place Marker2 to top of the board", "Place Marker2 to cells 3, 4, 5", "Place Marker2 to coordinates: \"A4\" \"B1\" \"C4\" \"D1\""}); // Q9
         answerDropdown7.addActionListener(this);
 
         answerDropdown8 = new JComboBox<String>(new String[] {"Select...", "Win by filling opponent's initial sites", "Win when pieces are 3 in line.", "Win when pieces are 4 in line.", "Win when pieces are 6 in line.", "Win when pieces are 3 in line and 1 piece is at the center.", "Win when 4 in line, but lose when 3 in line", "Win when 3 sides are connected."}); // Q9
@@ -258,16 +258,16 @@ public class QnAs extends JPanel implements ActionListener {
                 revalidate();
             }        
         } else if (currentQuestion.equals("Where do you want to place the pieces of the first player?")) { // Question 8. 
-            if (dropdownAnswer6.equals("(place \"Queen1\"   {\"A1\" \"C1\" \"E1\" \"A3\" \"B5\" \"D5\"})")) {
+            if (dropdownAnswer6.equals("Place Queen1 to coordinates: \"A1\" \"C1\" \"E1\" \"A3\" \"B5\" \"D5\"")) {
                 rules += " (start { (place \"Queen1\"   {\"A1\" \"C1\" \"E1\" \"A3\" \"B5\" \"D5\"})";
                 System.out.println(desc);
-            } else if (dropdownAnswer6.equals("(place \"Marker1\" (sites Bottom))")) {
+            } else if (dropdownAnswer6.equals("Place Marker1 to bottom of the board")) {
                 rules += " (start { (place \"Marker1\" (sites Bottom))";
                 equipment += " (regions \"Home\" P1  (sites Bottom))";
                 System.out.println(equipment);
-            } else if (dropdownAnswer6.equals("(place \"Marker1\" { 1 8 7})")) {
+            } else if (dropdownAnswer6.equals("Place Marker1 to cells 1, 8, 7")) {
                 rules += " (start { (place \"Marker1\" { 1 8 7})";
-            } else if (dropdownAnswer6.equals("(place \"Marker1\"  {\"A1\" \"B4\" \"C1\" \"D4\"})")) {
+            } else if (dropdownAnswer6.equals("Place Marker1 to coordinates: \"A1\" \"B4\" \"C1\" \"D4\"")) {
                 rules += " (start { (place \"Marker1\"  {\"A1\" \"B4\" \"C1\" \"D4\"})";
             }
 
@@ -277,16 +277,16 @@ public class QnAs extends JPanel implements ActionListener {
             repaint();
             revalidate();
         } else if (currentQuestion.equals("Where do you want to place the pieces of the second player?")) { // Question 9. 
-            if (dropdownAnswer7.equals("(place \"Queen2\"  {\"A5\" \"B1\" \"C5\" \"D1\" \"E3\" \"E5\"})")) {
+            if (dropdownAnswer7.equals("Place Queen2 to coordinates: \"A5\" \"B1\" \"C5\" \"D1\" \"E3\" \"E5\"")) {
                 rules += " (place \"Queen2\"  {\"A5\" \"B1\" \"C5\" \"D1\" \"E3\" \"E5\"}) })"; // This instance is different from the above. (rules (start is missing here.
                 System.out.println(desc);
-            } else if (dropdownAnswer7.equals("(place \"Marker2\" (sites Top))")) {
+            } else if (dropdownAnswer7.equals("Place Marker2 to top of the board")) {
                 rules += " (place \"Marker2\" (sites Top)) })"; // This instance is different from the above. (rules (start is missing here.
                 equipment += " (regions \"Home\" P2  (sites Top)) ";
                 System.out.println(equipment);
-            } else if (dropdownAnswer7.equals("(place \"Marker2\" { 3 4 5 })")) {
+            } else if (dropdownAnswer7.equals("Place Marker2 to cells 3, 4, 5")) {
                 rules += " (place \"Marker2\" { 3 4 5 }) })"; // This instance is different from the above. (rules (start is missing here.
-            } else if (dropdownAnswer7.equals("(place \"Marker2\"  {\"A4\" \"B1\" \"C4\" \"D1\"})")) {
+            } else if (dropdownAnswer7.equals("Place Marker2 to coordinates: \"A4\" \"B1\" \"C4\" \"D1\"")) {
                 rules += " (place \"Marker2\"  {\"A4\" \"B1\" \"C4\" \"D1\"}) })"; // This instance is different from the above. (rules (start is missing here.
             }
 
