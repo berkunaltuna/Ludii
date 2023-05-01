@@ -19,9 +19,6 @@ public class QnAEditorPanel extends JPanel
     /**
 	 * 
 	 */
-    
-
-
     public QnAEditorPanel()
     {
         setLayout(new BorderLayout());
@@ -29,10 +26,5 @@ public class QnAEditorPanel extends JPanel
         
         add(qna, BorderLayout.CENTER);
         setFocusable(true);
-    }
-
-    public void QnABox()
-    {
-
     }
 }

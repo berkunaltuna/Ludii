@@ -3,8 +3,6 @@ package app.display.dialogs.QnA_Editor;
 import javax.swing.*;
 import javax.swing.text.StyleConstants;
 
-import org.apache.batik.gvt.Marker;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -54,7 +52,7 @@ public class QnAs extends JPanel implements ActionListener {
         questionArea.setLineWrap(false);
         questionArea.setWrapStyleWord(false);
         questionArea.setEditable(false);
-        questionArea.setFont(new Font("Monaco", Font.PLAIN ,36));
+        questionArea.setFont(new Font("Monaco", Font.PLAIN ,16));
         questionArea.setAlignmentX(StyleConstants.ALIGN_CENTER);
         questionArea.setAlignmentY(StyleConstants.ALIGN_CENTER);
         add(questionArea,BorderLayout.CENTER); // is there a way to center text?
@@ -336,44 +334,16 @@ public class QnAs extends JPanel implements ActionListener {
             System.out.println(answer);
             if (answer.equals("Compile")) {
                 System.out.println("Compiling");
-                GameSetup.compileAndShowGame(StartQnAEditor.app, desc, false);
-
+                GameSetup.compileAndShowGame(StartQnAEditor.app, desc, false); // Compiles the game
+                // Exit the window back to Ludii?
                 System.out.println("Compiled");
-            } else if (currentQuestion.equals("What color is your cat?")) {
-                JOptionPane.showMessageDialog(this, "Your cat's name is " + answer + ".");
-                //System.exit(0);
-            }
-    }
+            } 
+        }
         // display the new question
         questionArea.setText(currentQuestion);
         repaint();
         revalidate();
     }
-
-    // ActionPerformed method for submit button
-    /* 
-    public void actionPerformed(ActionEvent e) {
-        if (answerDropdown.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Please select an answer.");
-        } else if (answerDropdown.getSelectedIndex() == 1) {
-            JOptionPane.showMessageDialog(this, "You selected " + answerDropdown.getSelectedItem());
-            try
-            {
-                readTicTacToe(StartQnAEditor.app);
-            }
-            catch (IOException e1)
-            {
-                e1.printStackTrace();
-            }
-        }
-        else {
-            JOptionPane.showMessageDialog(this, "You selected " + answerDropdown.getSelectedItem());
-            question2();
-            repaint();
-            revalidate();
-        }
-    }
-    */
 
     public void readTicTacToe(final PlayerApp app) throws IOException {
          // Passing the path to the file as a parameter
